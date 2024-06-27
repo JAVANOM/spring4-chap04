@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+     
+     <context:annotation-config />
+     
+     <!-- @Autowired로 지정한 의존 대상에 대해서는 contructor-arg, property 태그를 사용하지 않아도된다.  -->
+     <!-- @Resouce 사용했을때 name과 id 값이 일치 해야한다.  -->
+     <bean id="memberDao" class="spring.MemberDao">
+     </bean>
+     
+     <bean id="memberRegSvc" class="spring.MemberRegisterService">
+     </bean>
+     
+     
+     <bean id="memberPrinter" class="spring.MemberPrinter">
+     </bean>
+     
+     <bean id="printer" class="spring.MemberPrinter">
+     </bean>
+     <bean id="printer2" class="spring.MemberPrinter">
+     </bean>
+     <!-- @Autowired 적용한 자동 주입 돠 <property>를 적용한 의존 설정이 우선순위가 된다.  -->
+     <bean id="infoPrinter" class="spring.MemberInfoPrinter">
+         <property name="printer" ref="printer2"/>
+     </bean>
+
+</beans>
+
